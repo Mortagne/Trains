@@ -185,7 +185,7 @@ namespace Trains.Mac.Tests
 
             Emplacement emplacement1 = new Emplacement(0, 4);
 
-            Assert.Equal(2, ct.CombiensWagonApresMemeDestination(emplacement1, 'C'));
+            Assert.Equal(1, ct.CombiensWagonApresMemeDestination(emplacement1, 'C'));
         }
 
         [Fact]
@@ -209,7 +209,7 @@ namespace Trains.Mac.Tests
 
             Emplacement emplacement1 = new Emplacement(0, 4);
 
-            Assert.Equal(4, ct.CombiensWagonApresMemeDestination(emplacement1, 'C'));
+            Assert.Equal(3, ct.CombiensWagonApresMemeDestination(emplacement1, 'C'));
         }
 
         [Fact]

@@ -116,5 +116,17 @@ namespace Trains.Mac.Tests
 
             Assert.Equal("A,1,2;CC,1,0;DG,1,2;C,1,0", result);
         }
+
+        [Fact]
+        public void TestExampleCase5()
+        {
+            var test = new[] { "0000ABCCCCC", "0000000DG" };
+
+            _gts = new GareTriageSystem(test, 'C');
+
+            var result = _gts.retourSolution();
+
+            Assert.Equal("AB,1,2;CCC,1,0;CC,1,0", result);
+        }
     }
 }

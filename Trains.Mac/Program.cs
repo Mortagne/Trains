@@ -27,7 +27,6 @@ namespace Trains.Mac
                         break;
                     case 'C':
                         ChargementFichier();
-                        EcrireMenu();
                         break;
                     case 'G':
                         OptionG_Traitement();
@@ -40,10 +39,16 @@ namespace Trains.Mac
                         EcrireEntete();
                         break;
                 }
-
             }
+
+            _gareTriageInitiale = null;
         }
 
+
+        /// <summary>
+        /// Ecrires the entete.
+        /// Liste des actions possibles
+        /// </summary>
         private static void EcrireEntete()
         {
             Console.WriteLine(" #####                                                       #######                               ");
@@ -65,6 +70,10 @@ namespace Trains.Mac
             Console.Write("Votre choix : ");
         }
 
+        /// <summary>
+        /// Ecrires the menu.
+        /// Réaffichage du menu avec les actions possibles
+        /// </summary>
         private static void EcrireMenu()
         {
             Console.WriteLine("");
@@ -76,7 +85,12 @@ namespace Trains.Mac
             Console.Write("Votre choix : ");
         }
                   
-
+        /// <summary>
+        /// Chargements du fichier.
+        /// Lecture du fichier si valide
+        /// Affichage de la gare de triage
+        /// Proposition d'exécution du plan tout de suite
+        /// </summary>
         private static void ChargementFichier(){
             Console.WriteLine();
             Console.WriteLine("CHARGEMENT DU FICHIER");
@@ -96,13 +110,27 @@ namespace Trains.Mac
 
             Console.WriteLine("Voici le plan initiale de la gare de triage :");
 
+            Console.WriteLine("-------------");
             foreach(String s in _gareTriageInitiale){                
                 Console.WriteLine(s);
             }
+            Console.WriteLine("-------------");
 
-            Console.WriteLine("Vous pouvez générer le plan (Action 'G')");
+            Console.Write("Désirez-vous générer le plan (Action 'G') maintenant (O/N) ?");
+
+            char choix = Char.ToUpper(Console.ReadKey().KeyChar);
+            if(choix.Equals('O')){
+                OptionG_Traitement();
+            }
+            else{
+                EcrireMenu();
+            }
         }
 
+        /// <summary>
+        /// Options the g traitement.
+        /// Sequence d'exécution dans le cas de l'option G (Génération du plan)
+        /// </summary>
         private static void OptionG_Traitement()
         {
             if (_gareTriageInitiale != null)
@@ -123,6 +151,9 @@ namespace Trains.Mac
             EcrireEntete();
         }
 
+        /// <summary>
+        /// Choixs de la destination.
+        /// </summary>
         private static void ChoixDestination(){
             Console.WriteLine();
 
@@ -144,6 +175,10 @@ namespace Trains.Mac
 
         }
 
+        /// <summary>
+        /// Executions du plan de triage.
+        /// Appel de "TrainStarter"
+        /// </summary>
         private static void ExecutionPlanDeTriage(){
             TrainsStarter trainsStarter = new TrainsStarter();
 
@@ -153,13 +188,15 @@ namespace Trains.Mac
                 Console.WriteLine();
                 Console.WriteLine("Le système a trouver la solution suivante :");
                 Console.WriteLine(chaineRetour);
+                Console.WriteLine();
             }
             else{
                 Console.WriteLine();
                 Console.WriteLine("Le système a trouver aucune solution ...");
                 Console.WriteLine(chaineRetour);
+                Console.WriteLine();
             }
-
         }
+
     }
 }

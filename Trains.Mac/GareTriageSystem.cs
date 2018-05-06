@@ -48,12 +48,11 @@ namespace Trains.Mac
 
         private void effectuerDeplacement(CoursTriage varCoursTriage, Emplacement varPositionWagonDestination, char varDestinationFinal)
         {
-            if ( !varCoursTriage.CanMoveDirectly(varPositionWagonDestination))
+            if ( !varCoursTriage.CanMoveDirectly(varPositionWagonDestination) )
             {
                 effectuerDeplacementRemorque(varCoursTriage, varPositionWagonDestination, varDestinationFinal);
             }
-
-            if(effectuerDeplacementRemorqueLigneFinal(varCoursTriage, varPositionWagonDestination, varDestinationFinal)){
+            else if( !effectuerDeplacementRemorqueLigneFinal(varCoursTriage, varPositionWagonDestination, varDestinationFinal) ){
                 throw new Exception("incapable d'enlever le wagon");
             }
         }

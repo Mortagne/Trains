@@ -174,7 +174,7 @@ namespace Trains.Mac
 
             List<Wagon> lstWagons = _lignesCours[pEmplacementWagon.Ligne].Ligne;
 
-            for (int i = pEmplacementWagon.PositionLigne; i < lstWagons.Count; i++){
+            for (int i = (pEmplacementWagon.PositionLigne+1); i < lstWagons.Count; i++){
                 if(lstWagons[i].Destination.Equals(pDestinationFinal)){
                     nbrWagons++;
                 }
