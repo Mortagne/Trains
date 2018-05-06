@@ -1,0 +1,22 @@
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.deps.json
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.runtimeconfig.json
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.runtimeconfig.dev.json
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.pdb
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.csprojResolveAssemblyReference.cache
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.csproj.CoreCompileInputs.cache
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.AssemblyInfoInputs.cache
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.AssemblyInfo.cs
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.pdb
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.deps.json
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.runtimeconfig.json
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.runtimeconfig.dev.json
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.dll
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Debug/netcoreapp2.0/Trains.Mac.pdb
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.csprojResolveAssemblyReference.cache
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.csproj.CoreCompileInputs.cache
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.AssemblyInfoInputs.cache
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.AssemblyInfo.cs
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.dll
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Debug/netcoreapp2.0/Trains.Mac.pdb

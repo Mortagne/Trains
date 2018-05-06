@@ -1,0 +1,32 @@
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/xunit.runner.utility.netstandard15.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netstandard15.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.deps.json
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.runtimeconfig.json
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.runtimeconfig.dev.json
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.pdb
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.pdb
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.csprojResolveAssemblyReference.cache
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.csproj.CoreCompileInputs.cache
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.AssemblyInfoInputs.cache
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.AssemblyInfo.cs
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.dll
+/Users/examentechnique/Downloads/GSoft-Test-Technique-2018-Solution 2/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.pdb
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/xunit.runner.utility.netstandard15.dll
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netstandard15.dll
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.deps.json
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.runtimeconfig.json
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.runtimeconfig.dev.json
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.dll
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.Tests.pdb
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.dll
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/bin/Debug/netcoreapp2.0/Trains.Mac.pdb
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.csprojResolveAssemblyReference.cache
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.csproj.CoreCompileInputs.cache
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.AssemblyInfoInputs.cache
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.AssemblyInfo.cs
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.dll
+/Users/mortagne/GIT/Trains/Trains.Mac.Tests/obj/Debug/netcoreapp2.0/Trains.Mac.Tests.pdb
