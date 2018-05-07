@@ -11,61 +11,27 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void LigneWagonVide()
-        {
-            LigneWagon ligneWagon = new LigneWagon();
-
-            //var test = new[] { "0000ACDGC" };
-
-            Assert.Equal(ligneWagon.estVide(), true);
-        }
-
-        [Fact]
-        public void LigneWagonNonVide_String_0000ACDGC()
-        {
-            LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
-
-            var test = "0000ACDGC";
-
-            Assert.Equal(ligneWagon.estVide(), false);
-            Assert.Equal(ligneWagon.ToString(), test);
-        }
-
-        [Fact]
-        public void LigneWagonContientPasWagonDestinationZ()
+        public void TestLigneWagonContientPasWagonDestinationZ()
         {
             LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
 
             var destination = 'Z';
 
-            Assert.Equal(ligneWagon.ContientWagonDestination(destination), false);
+            Assert.Equal(false, ligneWagon.ContientWagonDestination(destination));
         }
 
         [Fact]
-        public void LigneWagonContientWagonDestinationG()
+        public void TestLigneWagonContientWagonDestinationG()
         {
             LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
 
             var destination = 'G';
 
-            Assert.Equal(ligneWagon.ContientWagonDestination(destination), true);
+            Assert.Equal(true, ligneWagon.ContientWagonDestination(destination));
         }
 
         [Fact]
-        public void PositionDuWagonDestinationA()
-        {
-            LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
-
-            var destination = 'A';
-            int resultat = 4;
-
-            int retour = ligneWagon.PositionWagonDestination(destination);
-
-            Assert.Equal(retour, resultat);
-        }
-
-        [Fact]
-        public void PositionDuWagonDestinationC()
+        public void TestPositionDuWagonDestinationC()
         {
             LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
 
@@ -78,14 +44,14 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void CanMoveDirectlyWagon()
+        public void TestCanMoveDirectlyWagon()
         {
             LigneWagon ligneWagon1 = new LigneWagon("0000ACDGC");
             LigneWagon ligneWagon2 = new LigneWagon("AVCDACDGC");
 
-            var destination1 = 4;
-            var destination2 = 5;
-            var destination3 = 0;
+            var destination1 = 4; //A
+            var destination2 = 5; //C
+            var destination3 = 0; //A
 
             Assert.Equal(true, ligneWagon1.CanMoveDirectly(destination1));
             Assert.Equal(false, ligneWagon1.CanMoveDirectly(destination2));
@@ -93,62 +59,28 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void TestStatutWagon()
+        public void TestViderEspaceRemorqueOccuperWagonA()
         {
             LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
 
-            var destination1 = 5;
-            var destination2 = 1;
-
-            Assert.Equal(false, ligneWagon.StatutWagon(destination1));
-            Assert.Equal(true, ligneWagon.StatutWagon(destination2));
-        }
-
-        [Fact]
-        public void CanMoveDirectlyWagonC()
-        {
-            LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
-
-            var destination = 5;
-
-            Assert.NotEqual(ligneWagon.CanMoveDirectly(destination), true);
-        }
-
-        [Fact]
-        public void ViderEspaceOccuperWagonA()
-        {
-            LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
-
-            var destination = 4;
-
-            ligneWagon.EnleverWagon(destination);
-
-            Assert.Equal(ligneWagon.ToString(), "00000CDGC");
-        }
-
-        [Fact]
-        public void ViderEspaceRemorqueOccuperWagonA()
-        {
-            LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
-
-            var destination = 4;
+            var destination = 4; //A
 
             Wagon wagon = ligneWagon.EnleverWagonRemorque(destination);
 
-            Assert.Equal(ligneWagon.ToString(), "00000CDGC");
-            Assert.Equal(wagon.Destination, 'A');
+            Assert.Equal("00000CDGC", ligneWagon.ToString());
+            Assert.Equal('A', wagon.Destination);
         }
 
         [Fact]
-        public void NbrEspaceVide()
+        public void TestNbrEspaceVide()
         {
             LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
 
-            Assert.Equal(ligneWagon.NbrEspaceLibre, 4);
+            Assert.Equal(4, ligneWagon.NbrEspaceLibre);
         }
 
         [Fact]
-        public void AjouterWagonTest()
+        public void TestAjouterWagonTest()
         {
             LigneWagon ligneWagon = new LigneWagon("0000ACDGC");
 
@@ -157,7 +89,6 @@ namespace Trains.Mac.Tests
             ligneWagon.AjouterWagon(wagon);
 
             Assert.Equal(ligneWagon.ToString(), "000ZACDGC");
-
         }
 
     }

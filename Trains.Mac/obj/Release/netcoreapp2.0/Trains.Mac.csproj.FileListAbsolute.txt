@@ -1,0 +1,10 @@
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Release/netcoreapp2.0/Trains.Mac.deps.json
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Release/netcoreapp2.0/Trains.Mac.runtimeconfig.json
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Release/netcoreapp2.0/Trains.Mac.runtimeconfig.dev.json
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Release/netcoreapp2.0/Trains.Mac.dll
+/Users/mortagne/GIT/Trains/Trains.Mac/bin/Release/netcoreapp2.0/Trains.Mac.pdb
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Release/netcoreapp2.0/Trains.Mac.csproj.CoreCompileInputs.cache
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Release/netcoreapp2.0/Trains.Mac.AssemblyInfoInputs.cache
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Release/netcoreapp2.0/Trains.Mac.AssemblyInfo.cs
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Release/netcoreapp2.0/Trains.Mac.dll
+/Users/mortagne/GIT/Trains/Trains.Mac/obj/Release/netcoreapp2.0/Trains.Mac.pdb

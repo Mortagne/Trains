@@ -13,16 +13,16 @@ namespace Trains.Mac.Tests
         private GareTriageSystem _gts;
 
         [Fact]
-        public void ValidationWagonNonDestination_SolutionImpossible(){
+        public void TestValidationWagonNonDestination_SolutionImpossible(){
             var test = new[] { "0000ACDGC", "0000000DG" };
 
             _gts = new GareTriageSystem(test, 'Z');
 
-            Assert.Equal(_gts.retourSolution(), "");
+            Assert.Equal("", _gts.retourSolution());
         }
 
         [Fact]
-        public void ValidationWagonDestination_A()
+        public void TestValidationWagonDestination_A()
         {
             var test = new[] { "0000ACDGC", "0000000DG" };
 
@@ -34,7 +34,7 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void ValidationWagonDestination_D()
+        public void TestValidationNombreMinimumDe2LignesDansGare()
         {
             var test = new[] { "0000000DG" };
 
@@ -42,11 +42,11 @@ namespace Trains.Mac.Tests
 
             String result = _gts.retourSolution();
 
-            Assert.Equal("D,1,0", result);
+            Assert.Equal("", result);
         }
 
         [Fact]
-        public void ValidationWagonDestination_Z()
+        public void TestValidationWagonDestination_Z()
         {
             var test = new[] { "0000ACDGC", "0000000DZ" };
 
@@ -55,18 +55,6 @@ namespace Trains.Mac.Tests
             String result = _gts.retourSolution();
 
             Assert.Equal("D,2,1;Z,2,0", result);
-        }
-
-        [Fact]
-        public void ValidationWagonDestination_G()
-        {
-            var test = new[] { "0000000DG" };
-
-            _gts = new GareTriageSystem(test, 'D');
-
-            String result = _gts.retourSolution();
-
-            Assert.Equal("D,1,0", result);
         }
 
         [Fact]

@@ -6,74 +6,107 @@ namespace Trains.Mac
 {
     public class GareTriageSystem
     {
-        CoursTriage _coursTriage = new CoursTriage();
-        char _destinationFinal;
+        private CoursTriage _coursTriage = new CoursTriage();
+        private char _destinationFinal;
 
-        String lesMouvements = "";
+        private String _lesMouvements = "";
 
 
-        public GareTriageSystem(string[] trainLines, char destination)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Trains.Mac.GareTriageSystem"/> class.
+        /// </summary>
+        /// <param name="pGareLignes">tableau de String contenant le schema de la Gare de départ</param>
+        /// <param name="pDestination">charactère de Destination</param>
+        public GareTriageSystem(string[] pGareLignes, char pDestination)
         {
-            _coursTriage.ajouterLignes(trainLines);
-            _destinationFinal = destination;
+            _coursTriage.ajouterLignes(pGareLignes);
+            _destinationFinal = pDestination;
         }
 
+        /// <summary>
+        /// Coeur principale du system
+        /// </summary>
+        /// <returns>string, si solution possible, sinon string vide.</returns>
         public string retourSolution()
         {
             try
             {
+                // Impossible de faire des déplacements si nous avons qu'une ligne
+                if (_coursTriage.CombiensDeLignePossedeGare() < 2)
+                    return "";
+
+                // Est que la destination est dans la gare.
                 if (!ValiderSiWagonDestinationExiste(_coursTriage, _destinationFinal))
                     return "";
 
+                //Tant qu'il y a des Wagon Destination, effectuer le traitement.
                 bool enTraitement = true;
                 while (enTraitement){
+
+                    //Trouver le premier Wagon de Destination
                     Emplacement? positionWagonDestination = TrouverPositionWagonDestination(_coursTriage, _destinationFinal);
 
                     if(positionWagonDestination != null){
-                        effectuerDeplacement(_coursTriage, (Emplacement)positionWagonDestination, _destinationFinal);
+                        DemarrageDesDeplacements(_coursTriage, (Emplacement)positionWagonDestination, _destinationFinal);
                     }
                     else{
                         enTraitement = false;
                     }
                 }
 
-                return lesMouvements;
+                return _lesMouvements;
             }
             catch(Exception ex){
-                Console.WriteLine(ex.Message);
+                Console.WriteLine();
+                Console.WriteLine("Erreur {0}", ex.Message);
+                Console.WriteLine();
                 return "";
             }
 
         }
 
-        private void effectuerDeplacement(CoursTriage varCoursTriage, Emplacement varPositionWagonDestination, char varDestinationFinal)
+
+        /// <summary>
+        /// Coeur du système pour la gestion des déplacements
+        /// </summary>
+        /// <param name="pCoursTriage">Cours de Triage</param>
+        /// <param name="pEmplacementWagon">Emplacement du premier Wagon de destination</param>
+        /// <param name="pCharDestination">Caractère de la destination</param>
+        private void DemarrageDesDeplacements(CoursTriage pCoursTriage, Emplacement pEmplacementWagon, char pCharDestination)
         {
-            if ( !varCoursTriage.CanMoveDirectly(varPositionWagonDestination) )
+            if ( !pCoursTriage.CanMoveDirectly(pEmplacementWagon) )
             {
-                effectuerDeplacementRemorque(varCoursTriage, varPositionWagonDestination, varDestinationFinal);
+                //Si je ne peux pas le déplacer le Wagon directement
+                effectuerDeplacementRemorque(pCoursTriage, pEmplacementWagon, pCharDestination);
             }
-            else if( !effectuerDeplacementRemorqueLigneFinal(varCoursTriage, varPositionWagonDestination, varDestinationFinal) ){
-                throw new Exception("incapable d'enlever le wagon");
+            // déplacement du/des Wagons en ligne final.
+            else {
+                effectuerDeplacementRemorqueLigneFinal(pCoursTriage, pEmplacementWagon, pCharDestination);
             }
         }
 
-        private bool effectuerDeplacementRemorque(CoursTriage varCoursTriage, Emplacement pEmplacementWagon, char pDestinationFinal)
+        /// <summary>
+        /// On déplace les Wagons pour faire de la place au Wagon Destination
+        /// </summary>
+        /// <returns><c>true</c>, if deplacement was effectuered, <c>false</c> otherwise.</returns>
+        /// <param name="pCoursTriage">Cours de Triage</param>
+        /// <param name="pEmplacementWagon">Emplacement du premier Wagon de destination</param>
+        /// <param name="pCharDestination">Caractère de la destination</param>
+        private void effectuerDeplacementRemorque(CoursTriage pCoursTriage, Emplacement pEmplacementWagon, char pCharDestination)
         {
-            bool valRetour = false;
+            int nbrWagonsDevant = pCoursTriage.CombiensWagonDevantWagonDestination(pEmplacementWagon, pCharDestination);
 
-            int nbrWagonsDevant = varCoursTriage.CombiensWagonDevantWagonDestination(pEmplacementWagon, pDestinationFinal);
-
-            int? positionLigneDeplacement = varCoursTriage.LigneEspacesLibre(pEmplacementWagon.Ligne, nbrWagonsDevant);
-
+            // Peut-on déplacer les Wagons sur une autre ligne ?
+            int? positionLigneDeplacement = pCoursTriage.LigneContientAssezEspacesLibre(pEmplacementWagon.Ligne, nbrWagonsDevant);
             if (positionLigneDeplacement == null)
                 throw new Exception("aucune ligne avec des espaces libres");
 
-
+            //Liste des Wagons déplacés
             List<Wagon> lstWagons = new List<Wagon>();
 
-            for (int i = nbrWagonsDevant; i > 0; i--)
-            {
-                Wagon wagonDeplacement = new Wagon(varCoursTriage.EnleverWagonRemorque(pEmplacementWagon.Ligne, pEmplacementWagon.PositionLigne - i));
+            for (int i = nbrWagonsDevant; i > 0; i--){
+                Emplacement emplacement = new Emplacement(pEmplacementWagon.Ligne, pEmplacementWagon.PositionLigne - i);
+                Wagon wagonDeplacement = new Wagon(pCoursTriage.EnleverWagonRemorque(emplacement));
                 lstWagons.Add(wagonDeplacement);
 
                 // La remorque ne peut pas avoir plus de 3 wagons à la fois.
@@ -82,102 +115,108 @@ namespace Trains.Mac
                 }
             }
 
-            varCoursTriage.AjouterWagonsDeplacementRemorques(lstWagons, (int)positionLigneDeplacement);
+            // Ajout sur la nouvelle lignes les Wagons déplacés.
+            pCoursTriage.AjouterWagonsDeplacementRemorques(lstWagons, (int)positionLigneDeplacement);
 
-            EnregistrerMouvementRemorque(lstWagons, pEmplacementWagon.Ligne, positionLigneDeplacement);
-
-            valRetour = true;
-
-
-            return valRetour;
+            // Enregistrement des actions
+            EnregistrerMouvementRemorque(lstWagons, pEmplacementWagon.Ligne, (int)positionLigneDeplacement);
         }
 
-        private bool effectuerDeplacementRemorqueLigneFinal(CoursTriage varCoursTriage, Emplacement pEmplacementWagon, char pDestinationFinal)
-        {
-            bool valRetour = false;
 
-            int nbrWagonsMemeDestinationApres = varCoursTriage.CombiensWagonApresMemeDestination(pEmplacementWagon, pDestinationFinal);
+        /// <summary>
+        /// Effectuer les déplacements vers la ligne de train dans l'étape Remorque
+        /// </summary>
+        /// <param name="pCoursTriage">Cours de Triage</param>
+        /// <param name="pEmplacementWagon">Emplacement du premier Wagon de destination</param>
+        /// <param name="pCharDestination">Caractère de la destination</param>
+        private void effectuerDeplacementRemorqueLigneFinal(CoursTriage pCoursTriage, Emplacement pEmplacementWagon, char pCharDestination)
+        {
+            int nbrWagonsMemeDestinationApres = pCoursTriage.CombiensWagonApresMemeDestination(pEmplacementWagon, pCharDestination);
 
             List<Wagon> lstWagons = new List<Wagon>();
 
             for (int i = 0; i <= nbrWagonsMemeDestinationApres; i++){
-                Wagon wagonDeplacement = new Wagon(varCoursTriage.EnleverWagonRemorque(pEmplacementWagon.Ligne, pEmplacementWagon.PositionLigne + i));
+                Emplacement emplacement = new Emplacement(pEmplacementWagon.Ligne, pEmplacementWagon.PositionLigne + i);
+                Wagon wagonDeplacement = new Wagon(pCoursTriage.EnleverWagonRemorque(emplacement));
                 lstWagons.Add(wagonDeplacement);
 
                 // La remorque ne peut pas avoir plus de 3 wagons à la fois.
-                if (lstWagons.Count >= 3)
-                {
+                if (lstWagons.Count >= 3){
                     break;
                 }
             }
 
+            // on n'a pas besoin d'ajouter les Wagons sur la ligne Finale.
+
+            // Enregistrement des actions
             EnregistrerMouvementRemorqueFinal(lstWagons, pEmplacementWagon.Ligne, 0);
-
-            valRetour = true;
-
-            return valRetour;
         }
 
-        private void EnregistrerMouvementRemorque(List<Wagon> lstWagons, int varLigne, int? positionLigneDeplacement)
+
+        /// <summary>
+        /// Enregistrement des mouvements dans l'étape Remorquage
+        /// </summary>
+        /// <param name="pListWagon">Liste de Wagon</param>
+        /// <param name="pLigneSource">Ligne source</param>
+        /// <param name="pLigneDestination">Ligne destination</param>
+        private void EnregistrerMouvementRemorque(List<Wagon> pListWagon, int pLigneSource, int pLigneDestination)
         {
             string lstDestinationWagon = "";
-            foreach(Wagon w in lstWagons){
-                if (w != null)
-                {
-                    lstDestinationWagon += w.Destination.ToString();
-                }
+            foreach(Wagon w in pListWagon) {
+                lstDestinationWagon += w.Destination.ToString();
             }
-            if (lesMouvements.Length == 0)
+            if (_lesMouvements.Length == 0)
             {
-                lesMouvements += lstDestinationWagon.ToString() + "," + (varLigne + 1).ToString() + "," + (positionLigneDeplacement + 1).ToString();
+                _lesMouvements += lstDestinationWagon.ToString() + "," + (pLigneSource + 1).ToString() + "," + (pLigneDestination + 1).ToString();
             }
             else
             {
-                lesMouvements += ";" + lstDestinationWagon.ToString() + "," + (varLigne + 1).ToString() + "," + (positionLigneDeplacement + 1).ToString();
+                _lesMouvements += ";" + lstDestinationWagon.ToString() + "," + (pLigneSource + 1).ToString() + "," + (pLigneDestination + 1).ToString();
             }
         }
 
-        private void EnregistrerMouvementRemorqueFinal(List<Wagon> lstWagons, int varLigne, int? positionLigneDeplacement)
+        /// <summary>
+        /// Enregistrement des mouvements dans l'étape Remorquage vers la ligne final
+        /// </summary>
+        /// <param name="pListWagon">Liste de Wagon</param>
+        /// <param name="pLigneSource">Ligne source</param>
+        /// <param name="pLigneDestination">Ligne destination</param>
+        private void EnregistrerMouvementRemorqueFinal(List<Wagon> pListWagon, int pLigneSource, int pLigneDestination)
         {
             string lstDestinationWagon = "";
-            foreach (Wagon w in lstWagons)
-            {
-                if (w != null)
-                {
-                    lstDestinationWagon += w.Destination.ToString();
-                }
+            foreach (Wagon w in pListWagon) {
+                lstDestinationWagon += w.Destination.ToString();
             }
-            if (lesMouvements.Length == 0)
+            if (_lesMouvements.Length == 0)
             {
-                lesMouvements += lstDestinationWagon.ToString() + "," + (varLigne + 1).ToString() + "," + (positionLigneDeplacement).ToString();
+                _lesMouvements += lstDestinationWagon.ToString() + "," + (pLigneSource + 1).ToString() + "," + (pLigneDestination).ToString();
             }
             else
             {
-                lesMouvements += ";" + lstDestinationWagon.ToString() + "," + (varLigne + 1).ToString() + "," + (positionLigneDeplacement).ToString();
+                _lesMouvements += ";" + lstDestinationWagon.ToString() + "," + (pLigneSource + 1).ToString() + "," + (pLigneDestination).ToString();
             }
         }
 
-        private void EnregistrerMouvement(char varDestinationFinal, int ligne)
+        /// <summary>
+        /// Trouver le premier Wagon avec la Destination choisi
+        /// </summary>
+        /// <returns>Emplacement du Wagon</returns>
+        /// <param name="pCoursTriage">Cours de Triage</param>
+        /// <param name="pCharDestination">Caractère de Destination</param>
+        private Emplacement? TrouverPositionWagonDestination(CoursTriage pCoursTriage, char pCharDestination)
         {
-            if (lesMouvements.Length == 0)
-            {
-                lesMouvements += varDestinationFinal.ToString() + "," + (ligne + 1).ToString() + ",0";
-            }
-            else
-            {
-                lesMouvements += ";" + varDestinationFinal.ToString() + "," + (ligne + 1).ToString() + ",0";
-            }
+            return pCoursTriage.TrouverPositionWagonDestination(pCharDestination);
         }
 
 
-
-        private Emplacement? TrouverPositionWagonDestination(CoursTriage varCoursTriage, char varDestination)
-        {
-            return varCoursTriage.TrouverPositionWagonDestination(varDestination);
-        }
-
-        private bool ValiderSiWagonDestinationExiste(CoursTriage varCoursTriage, char varDestination){
-            return varCoursTriage.WagonDestinationExiste(varDestination);
+        /// <summary>
+        /// Valider si la Destination Existe pour l'un des Wagon
+        /// </summary>
+        /// <returns><c>true</c>, if destination existe, <c>false</c> otherwise.</returns>
+        /// <param name="pCoursTriage">Cours de Triage</param>
+        /// <param name="pCharDestination">Caractère de Destination</param>
+        private bool ValiderSiWagonDestinationExiste(CoursTriage pCoursTriage, char pCharDestination){
+            return pCoursTriage.WagonDestinationExiste(pCharDestination);
         }
     }
 }

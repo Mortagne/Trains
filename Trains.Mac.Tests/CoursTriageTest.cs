@@ -20,8 +20,7 @@ namespace Trains.Mac.Tests
 
             ct.ajouterLignes(test);
 
-           Assert.Equal(ct.Lignes(), test);
-
+           Assert.Equal(test, ct.LignesFormatString());
         }
 
         [Fact]
@@ -33,7 +32,7 @@ namespace Trains.Mac.Tests
 
             ct.ajouterLignes(test);
 
-            Assert.Equal(ct.Lignes(), test);
+            Assert.Equal(test, ct.LignesFormatString());
         }
 
         [Fact]
@@ -45,8 +44,7 @@ namespace Trains.Mac.Tests
 
             char destination = 'Z';
 
-            Assert.Equal(ct.WagonDestinationExiste(destination), false);
-
+            Assert.Equal(false, ct.WagonDestinationExiste(destination));
         }
 
         [Fact]
@@ -58,12 +56,11 @@ namespace Trains.Mac.Tests
 
             char destination = 'A';
 
-            Assert.Equal(ct.WagonDestinationExiste(destination), true);
-
+            Assert.Equal(true, ct.WagonDestinationExiste(destination));
         }
 
         [Fact]
-        public void TrouverPositionWagon_A()
+        public void TestTrouverPositionWagon_A()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000ACDGC", "0000000DG" };
@@ -74,13 +71,12 @@ namespace Trains.Mac.Tests
             Emplacement positionWagon = (Emplacement)ct.TrouverPositionWagonDestination(destination);
             Emplacement validation = new Emplacement(0, 4);
 
-            Assert.Equal(positionWagon, validation);
-
+            Assert.Equal(validation, positionWagon);
         }
 
 
         [Fact]
-        public void CanMoveDirectlyWagon_A()
+        public void TestCanMoveDirectlyWagon_A()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000ACDGC", "0000000DG" };
@@ -88,68 +84,22 @@ namespace Trains.Mac.Tests
 
             Emplacement emplacement = new Emplacement(0, 4);
 
-            Assert.Equal(ct.CanMoveDirectly(emplacement), true);
-
+            Assert.Equal(true, ct.CanMoveDirectly(emplacement));
         }
 
         [Fact]
-        public void CantMoveDirectlyWagon_C()
+        public void TestCantMoveDirectlyWagon_C()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000ACDGC", "0000000DG" };
             ct.ajouterLignes(test);
 
             Emplacement emplacement = new Emplacement(0, 5);
-            Assert.Equal(ct.CanMoveDirectly(emplacement), false);
-        }
-
-
-        [Fact]
-        public void CanMoveDirectlyWagon_C()
-        {
-            var ct = new CoursTriage();
-            var test = new[] { "0000ACDGC", "0000000DG" };
-            ct.ajouterLignes(test);
-
-            Emplacement emplacement = new Emplacement(0, 5);
-
-            Assert.NotEqual(ct.CanMoveDirectly(emplacement), true);
-
+            Assert.Equal(false, ct.CanMoveDirectly(emplacement));
         }
 
         [Fact]
-        public void EnleverWagon_Z_ImpossibleWagonDevant()
-        {
-            var ct = new CoursTriage();
-            var test = new[] { "0000ACDGC", "0000000DZ" };
-            var testResultat = new[] { "0000ACDGC", "0000000DZ" };
-            ct.ajouterLignes(test);
-
-            Emplacement emplacement = new Emplacement(1, 8);
-
-            Assert.Equal(ct.EnleverWagon(emplacement), false);
-
-            Assert.Equal(ct.Lignes(), testResultat);
-
-        }
-
-        [Fact]
-        public void EnleverWagon_Z()
-        {
-            var ct = new CoursTriage();
-            var test = new[] { "0000ACDGC", "00000000Z" };
-            var testResultat = new[] { "0000ACDGC", "000000000" };
-            ct.ajouterLignes(test);
-
-            Emplacement emplacement = new Emplacement(1, 8);
-
-            Assert.Equal(ct.EnleverWagon(emplacement), true);
-            Assert.Equal(ct.Lignes(), testResultat);
-
-        }
-
-        [Fact]
-        public void CombienWagonsDevant_Z()
+        public void TestCombienWagonsDevant_Z()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000ACDGZ", "00000DAZB" };
@@ -163,7 +113,7 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void CombienWagonsDevant_surLignePlaine()
+        public void TestCombienWagonsDevant_surLignePlaine()
         {
             var ct = new CoursTriage();
             var test = new[] { "DGACBDGE" };
@@ -177,7 +127,7 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void CombienWagonsApres_MemeDestination()
+        public void TestCombienWagonsApres_MemeDestination()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000CCDB" };
@@ -189,7 +139,7 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void CombienWagonsApres_MemeDestinationUnique()
+        public void TestCombienWagonsApres_MemeDestinationUnique()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000CDDB" };
@@ -201,7 +151,7 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void CombienWagonsApres_MemeDestination_FULL()
+        public void TestCombienWagonsApres_MemeDestination_FULL()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000CCCC" };
@@ -213,29 +163,29 @@ namespace Trains.Mac.Tests
         }
 
         [Fact]
-        public void LigneAvecPlusDe2EspaceLibres()
+        public void TestLigneAvecPlusDe2EspaceLibres()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000ACDGZF", "ABCDEDAZB", "0BCDEFADF" };
             ct.ajouterLignes(test);
 
 
-            Assert.Equal(ct.LigneEspacesLibre(2, 2), 0);
+            Assert.Equal(0, ct.LigneContientAssezEspacesLibre(2, 2));
         }
 
         [Fact]
-        public void AucuneLigneAvecPlusDe2EspaceLibres()
+        public void TestAucuneLigneAvecPlusDe2EspaceLibres()
         {
             var ct = new CoursTriage();
             var test = new[] { "0ABAACDGZF", "ABCDEDAZB", "0BCDEFADF" };
             ct.ajouterLignes(test);
 
 
-            Assert.Equal(ct.LigneEspacesLibre(2, 2).HasValue, false);
+            Assert.Equal(false, ct.LigneContientAssezEspacesLibre(2, 2).HasValue);
         }
 
         [Fact]
-        public void AjouterUneListeWagonSurLignes()
+        public void TestAjouterUneListeWagonSurLignes()
         {
             var ct = new CoursTriage();
             var test = new[] { "0000ACDGZF", "ABCDEDAZB", "0BCDEFADF" };
@@ -248,7 +198,18 @@ namespace Trains.Mac.Tests
 
             ct.AjouterWagonsDeplacementRemorques(lst, 0);
 
-            Assert.Equal(ct.Lignes(), testResultat);
+            Assert.Equal(testResultat, ct.LignesFormatString());
+        }
+
+        [Fact]
+        public void TestNombreDeLignes()
+        {
+            var ct = new CoursTriage();
+            var test = new[] { "0ABAACDGZF", "ABCDEDAZB", "0BCDEFADF" };
+            ct.ajouterLignes(test);
+
+
+            Assert.Equal(3, ct.CombiensDeLignePossedeGare());
         }
     }
 }
